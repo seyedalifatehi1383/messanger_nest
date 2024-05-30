@@ -2,7 +2,7 @@
 
 In this project I want to create a massenger with nestjs framework and mysql database. In the first phase I want to create this massenger with REST API and in the second phase I want to make this massenger real-time with Apache Kafka massege broker and websocket.
 
-## Installation Our Project
+## Installation of Project
 
 ```bash
 $ npm install
