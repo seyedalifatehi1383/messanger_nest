@@ -5,20 +5,20 @@ In this project I want to create a massenger with nestjs framework and mysql dat
 ## Installation of Project
 
 ```bash
-$ npm install
+$ pnpm install
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm run start
+$ pnpm start
 
 # watch mode
-$ npm run start:dev
+$ pnpm start:dev
 
 # production mode
-$ npm run start:prod
+$ pnpm start:prod
 ```
 
 ## Made By
