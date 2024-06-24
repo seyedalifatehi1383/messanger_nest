@@ -28,8 +28,13 @@ export class AccountService {
     return this.databaseService.query(`SELECT * FROM Account`);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} account`;
+  async findOneAccount(ID: number) {
+    const result: AccountEntity[] = await this.databaseService.query(
+      `SELECT * FROM Account where ID = ${ID}`,
+    );
+    if (result.length === 0)
+      throw new HttpException('NotFound', HttpStatus.NOT_FOUND);
+    else return result[0];
   }
 
   update(id: number, updateAccountDto: UpdateAccountDto) {
