@@ -14,8 +14,8 @@ export class AccountController {
   }
 
   @Get()
-  findAll() {
-    return this.accountService.findAll();
+  findAllAccounts() {
+    return this.accountService.findAllAccounts();
   }
 
   @Get(':id')
