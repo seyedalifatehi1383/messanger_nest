@@ -24,8 +24,8 @@ export class AccountService {
     else return accountEntity;
   }
 
-  findAll() {
-    return `This action returns all account`;
+  async findAllAccounts(): Promise<AccountEntity[]> {
+    return this.databaseService.query(`SELECT * FROM Account`);
   }
 
   findOne(id: number) {
