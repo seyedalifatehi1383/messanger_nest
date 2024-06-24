@@ -37,20 +37,20 @@ export class AccountService {
     else return result[0];
   }
 
-  async updateAccount(ID: number, accountEntity: updateAccountDto) {
+  async updateAccount(ID: number, updateAccountDto: UpdateAccountDto) {
     const updateResult = await this.databaseService.query(
       `UPDATE Account SET name= ?, accountID= ?, profile= ?, isOnline= ?, lastTimeOnline= ? WHERE ID = ${ID}`,
       [
-        accountEntity.name,
-        accountEntity.accountID,
-        accountEntity.profile,
-        accountEntity.isOnline,
-        accountEntity.lastTimeOnline,
+        updateAccountDto.name,
+        updateAccountDto.accountID,
+        updateAccountDto.profile,
+        updateAccountDto.isOnline,
+        updateAccountDto.lastTimeOnline,
       ],
     );
     if (updateResult.changedRows === 0 && updateResult.affectedRows == 0)
       throw new HttpException('record Not found', HttpStatus.NOT_FOUND);
-    else return accountEntity;
+    else return updateAccountDto;
   }
 
   remove(id: number) {
