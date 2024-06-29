@@ -29,7 +29,7 @@ export class AccountController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.accountService.remove(+id);
+  removeAccount(@Param('id') id: string) {
+    return this.accountService.removeAccount(+id);
   }
 }
