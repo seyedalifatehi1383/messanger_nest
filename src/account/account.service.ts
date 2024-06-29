@@ -53,7 +53,9 @@ export class AccountService {
     else return updateAccountDto;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} account`;
+  async removeAccount(ID: number) {
+    const result = await this.findOneAccount(ID);
+    await this.databaseService.query(`DELETE FROM Account where ID = ${ID}`);
+    return result;
   }
 }
