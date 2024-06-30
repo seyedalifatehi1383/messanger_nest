@@ -30,8 +30,8 @@ export class UserService {
     else return result[0];
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findAllUsers(): Promise<UserEntity[]> {
+    return this.databaseService.query(`SELECT * FROM User`);
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
