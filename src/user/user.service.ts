@@ -21,8 +21,13 @@ export class UserService {
     else return userEntity;
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async findOneUser(ID: number) {
+    const result: UserEntity[] = await this.databaseService.query(
+      `SELECT * FROM User where ID = ${ID}`,
+    );
+    if (result.length === 0)
+      throw new HttpException('NotFound', HttpStatus.NOT_FOUND);
+    else return result[0];
   }
 
   findOne(id: number) {
