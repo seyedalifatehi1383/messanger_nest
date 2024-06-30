@@ -6,7 +6,7 @@ import {
   IsString,
   IsStrongPassword,
 } from 'class-validator';
-export class User {
+export class UserEntity {
   @ApiProperty({ description: 'user PK', example: 1 })
   @IsNumber()
   ID: number;

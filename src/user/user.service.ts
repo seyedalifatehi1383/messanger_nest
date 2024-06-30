@@ -1,11 +1,24 @@
-import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserEntity } from './entities/user.entity';
+import { DatabaseService } from 'src/database/database.service';
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(private readonly databaseService: DatabaseService) {}
+
+  async createUser(userEntity: UserEntity) {
+    const result = await this.databaseService.query(
+      `INSERT INTO User(username, password, email) VALUES (?, ?, ?)`,
+      [
+        userEntity.username,
+        userEntity.password,
+        userEntity.email,
+      ],
+    );
+    if (result.affectedRows == 0)
+      throw new HttpException('Unsuccessful create', HttpStatus.FORBIDDEN);
+    else return userEntity;
   }
 
   findAll() {
