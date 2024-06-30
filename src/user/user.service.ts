@@ -48,7 +48,9 @@ export class UserService {
     else return updateUserDto;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async removeUser(ID: number) {
+    const result = await this.findOneUser(ID);
+    await this.databaseService.query(`DELETE FROM User where ID = ${ID}`);
+    return result;
   }
 }
