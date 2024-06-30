@@ -34,8 +34,18 @@ export class UserService {
     return this.databaseService.query(`SELECT * FROM User`);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async updateAccount(ID: number, updateUserDto: UpdateUserDto) {
+    const updateResult = await this.databaseService.query(
+      `UPDATE Account SET username= ?, password= ?, email= ? WHERE ID = ${ID}`,
+      [
+        updateUserDto.username,
+        updateUserDto.password,
+        updateUserDto.email,
+      ],
+    );
+    if (updateResult.changedRows === 0 && updateResult.affectedRows == 0)
+      throw new HttpException('record Not found', HttpStatus.NOT_FOUND);
+    else return updateUserDto;
   }
 
   remove(id: number) {
