@@ -34,7 +34,7 @@ export class UserService {
     return this.databaseService.query(`SELECT * FROM User`);
   }
 
-  async updateAccount(ID: number, updateUserDto: UpdateUserDto) {
+  async updateUser(ID: number, updateUserDto: UpdateUserDto) {
     const updateResult = await this.databaseService.query(
       `UPDATE Account SET username= ?, password= ?, email= ? WHERE ID = ${ID}`,
       [
