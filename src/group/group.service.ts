@@ -9,7 +9,7 @@ export class GroupService {
   async createGroup(groupEntity: GroupEntity) {
 
     const result = await this.databaseService.query(
-      `INSERT INTO Account(name, profile, GroupID, messagesNumber) VALUES (?, ?, ?, ?)`,
+      `INSERT INTO Group(name, profile, GroupID, messagesNumber) VALUES (?, ?, ?, ?)`,
       [
         groupEntity.name,
         groupEntity.profile,
