@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNumber, IsString, IsUUID } from "class-validator";
 
-export class Group {
+export class GroupEntity {
     @ApiProperty({ description: 'group PK', example: 1 })
     @IsNumber()
     ID: number;

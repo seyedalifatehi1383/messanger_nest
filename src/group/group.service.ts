@@ -1,11 +1,25 @@
-import { Injectable } from '@nestjs/common';
-import { CreateGroupDto } from './dto/create-group.dto';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UpdateGroupDto } from './dto/update-group.dto';
+import { GroupEntity } from './entities/group.entity';
+import { DatabaseService } from 'src/database/database.service';
 
 @Injectable()
 export class GroupService {
-  create(createGroupDto: CreateGroupDto) {
-    return 'This action adds a new group';
+  constructor(private readonly databaseService: DatabaseService) {}
+  async createGroup(groupEntity: GroupEntity) {
+
+    const result = await this.databaseService.query(
+      `INSERT INTO Account(name, profile, GroupID, messagesNumber) VALUES (?, ?, ?, ?)`,
+      [
+        groupEntity.name,
+        groupEntity.profile,
+        groupEntity.GroupID,
+        groupEntity.messagesNumber
+      ],
+    );
+    if (result.affectedRows == 0)
+      throw new HttpException('Unsuccessful create', HttpStatus.FORBIDDEN);
+    else return groupEntity;
   }
 
   findAll() {
